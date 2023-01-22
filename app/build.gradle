@@ -35,6 +35,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:11.6.2'
     implementation 'com.google.firebase:firebase-storage:11.6.2'
 
+    //CurrencyEditText dependencies
+    implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
+
+
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -56,7 +56,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -66,30 +66,32 @@
         android:inputType="textPersonName"
         android:padding="10dp" />
 
-    <EditText
-        android:id="@+id/editText2"
+    <com.blackcat.currencyedittext.CurrencyEditText
+        android:id="@+id/editValor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@drawable/bg_edit_text"
         android:ems="10"
         android:hint="Valor"
-        android:inputType="textPersonName"
+        android:inputType="textShortMessage|number|textPersonName|text|numberDecimal|textEmailAddress"
         android:padding="10dp" />
 
+
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editDescricao"
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/bg_edit_text"
         android:ems="10"
+        android:gravity="start"
         android:hint="Descrição"
         android:inputType="textPersonName"
         android:padding="10dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonCadastrarAnuncio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cadastrar Anuncio"
