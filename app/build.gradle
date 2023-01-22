@@ -38,6 +38,9 @@ dependencies {
     //CurrencyEditText dependencies
     implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
 
+    //MaskEditText dependencies
+    implementation 'com.github.santalu:mask-edittext:1.0.7'
+
 
 }
 
