@@ -9,7 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.CadastroActivity"></activity>
+        <activity android:name=".activity.CadastrarAnuncioActivity"></activity>
+        <activity
+            android:name=".activity.MeusAnunciosActivity"
+            android:label="@string/title_activity_meus_anuncios"
+            android:parentActivityName=".activity.AnunciosActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.marcosviniciusferreira.olx.activity.AnunciosActivity" />
+        </activity>
+        <activity android:name=".activity.CadastroActivity" />
         <activity android:name=".activity.AnunciosActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
