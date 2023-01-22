@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="botaoPadrao" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">#D500F9</item>
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 </resources>
