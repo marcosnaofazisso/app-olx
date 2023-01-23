@@ -1,10 +1,13 @@
 package com.marcosviniciusferreira.olx.model;
 
+import com.google.firebase.database.DatabaseReference;
+import com.marcosviniciusferreira.olx.helper.ConfiguracaoFirebase;
+
 import java.util.List;
 
 public class Anuncio {
 
-    private String id;
+    private String idAnuncio;
     private String estado;
     private String categoria;
     private String titulo;
@@ -14,14 +17,30 @@ public class Anuncio {
     private List<String> fotos;
 
     public Anuncio() {
+
+        DatabaseReference anuncioRef = ConfiguracaoFirebase.getFirebase()
+                .child("meus_anuncios");
+        //Id do anuncio é gerado no construtor
+        setIdAnuncio(anuncioRef.push().getKey());
+
     }
 
-    public String getId() {
-        return id;
+    public void salvar() {
+        DatabaseReference anuncioRef = ConfiguracaoFirebase.getFirebase()
+                .child("meus_anuncios");
+
+        String idUsuario = ConfiguracaoFirebase.getIdUsuario();
+        anuncioRef.child(idUsuario)
+                .child(getIdAnuncio())
+                .setValue(this);
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getIdAnuncio() {
+        return idAnuncio;
+    }
+
+    public void setIdAnuncio(String id) {
+        this.idAnuncio = id;
     }
 
     public String getEstado() {
