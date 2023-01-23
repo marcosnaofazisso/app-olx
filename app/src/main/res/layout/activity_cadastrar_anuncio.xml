@@ -15,21 +15,21 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageCadastro1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:srcCompat="@drawable/padrao" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imageCadastro2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:srcCompat="@drawable/padrao" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imageCadastro3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
