@@ -13,9 +13,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.blackcat.currencyedittext.CurrencyEditText;
 import com.marcosviniciusferreira.olx.R;
@@ -35,6 +37,8 @@ public class CadastrarAnuncioActivity extends AppCompatActivity
     private MaskEditText campoTelefone;
     private ImageView imagem1, imagem2, imagem3;
 
+    private Spinner campoEstado, campoCategoria;
+
 
     private String[] permissoes = new String[]{
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -53,7 +57,32 @@ public class CadastrarAnuncioActivity extends AppCompatActivity
         Permissoes.validarPermissoes(permissoes, this, 1);
 
         inicializarComponentes();
+        carregarDadosSpinner();
 
+
+    }
+
+    private void carregarDadosSpinner() {
+
+        //String[] estados = new String[] {"AC", "SP"};
+
+        //Configurar spinner de Estados
+        String[] estados = getResources().getStringArray(R.array.estados);
+        ArrayAdapter<String> adapterEstados = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item,
+                estados
+        );
+        adapterEstados.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        campoEstado.setAdapter(adapterEstados);
+
+        //Configurar spinner de Categorias
+        String[] categorias = getResources().getStringArray(R.array.categoria);
+        ArrayAdapter<String> adapterCategorias = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item,
+                categorias
+        );
+        adapterCategorias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        campoCategoria.setAdapter(adapterCategorias);
 
     }
 
@@ -63,7 +92,7 @@ public class CadastrarAnuncioActivity extends AppCompatActivity
         campoDescricao = findViewById(R.id.editDescricao);
         campoTelefone = findViewById(R.id.editTelefone);
         buttonCadastrar = findViewById(R.id.buttonCadastrarAnuncio);
-        
+
         imagem1 = findViewById(R.id.imageCadastro1);
         imagem2 = findViewById(R.id.imageCadastro2);
         imagem3 = findViewById(R.id.imageCadastro3);
@@ -71,6 +100,10 @@ public class CadastrarAnuncioActivity extends AppCompatActivity
         imagem1.setOnClickListener(this);
         imagem2.setOnClickListener(this);
         imagem3.setOnClickListener(this);
+
+        campoEstado = findViewById(R.id.spinnerEstado);
+        campoCategoria = findViewById(R.id.spinnerCategoria);
+
 
         //Configurar localidade para pt-BR
         Locale locale = new Locale("pt", "BR");
