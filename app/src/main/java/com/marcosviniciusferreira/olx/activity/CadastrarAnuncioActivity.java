@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.blackcat.currencyedittext.CurrencyEditText;
 import com.marcosviniciusferreira.olx.R;
@@ -60,7 +61,76 @@ public class CadastrarAnuncioActivity extends AppCompatActivity
         carregarDadosSpinner();
 
 
+        buttonCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                validarDadosAnuncio();
+                salvarAnuncio();
+            }
+        });
+
+
     }
+
+    public void validarDadosAnuncio() {
+
+        String estado = campoEstado.getSelectedItem().toString();
+        String categoria = campoCategoria.getSelectedItem().toString();
+
+        String titulo = campoTitulo.getText().toString();
+        String valor = String.valueOf(campoValor.getRawValue());
+        String telefone = campoTelefone.getText().toString();
+        String numerosTelefone = "";
+        if (campoTelefone.getRawText() != null) {
+            numerosTelefone = campoTelefone.getRawText().toString();
+        }
+        String descricao = campoDescricao.getText().toString();
+
+        if (listaFotosRecuperadas.size() != 0) {
+
+            if (!estado.isEmpty()) {
+                if (!categoria.isEmpty()) {
+                    if (!titulo.isEmpty()) {
+                        if (!valor.isEmpty() && !valor.equals("0")) {
+                            if (!telefone.isEmpty() && numerosTelefone.length() >= 11) {
+                                if (!descricao.isEmpty()) {
+
+                                } else {
+                                    exibirMensagemErro("Preencha a descricao!");
+                                }
+                            } else {
+                                exibirMensagemErro("Preencha o telefone! Digite ao menos 11 números");
+                            }
+                        } else {
+                            exibirMensagemErro("Preencha o valor!");
+                        }
+
+                    } else {
+                        exibirMensagemErro("Preencha o titulo!");
+                    }
+
+                } else {
+                    exibirMensagemErro("Selecione o campo categoria!");
+                }
+
+            } else {
+                exibirMensagemErro("Selecione o campo estado!");
+            }
+
+        } else {
+            exibirMensagemErro("Selecione ao menos uma foto!");
+
+        }
+
+    }
+
+    private void exibirMensagemErro(String mensagem) {
+        Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
+    }
+
+    private void salvarAnuncio() {
+    }
+
 
     private void carregarDadosSpinner() {
 
