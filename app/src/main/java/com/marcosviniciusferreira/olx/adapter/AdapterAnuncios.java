@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.marcosviniciusferreira.olx.R;
 import com.marcosviniciusferreira.olx.model.Anuncio;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,20 @@ public class AdapterAnuncios extends RecyclerView.Adapter<AdapterAnuncios.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
+
+        Anuncio anuncio = anuncios.get(position);
+        myViewHolder.titulo.setText(anuncio.getTitulo());
+        myViewHolder.valor.setText(anuncio.getValor());
+        myViewHolder.descricao.setText(anuncio.getDescricao());
+
+        //Carregar a imagem utilizando a lib Picasso
+        List<String> urlFotos = anuncio.getFotos();
+
+        String urlCapa = urlFotos.get(0);
+
+        Picasso.get().load(urlCapa).into(myViewHolder.foto);
+
 
     }
 
