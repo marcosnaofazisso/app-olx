@@ -2,16 +2,16 @@ package com.marcosviniciusferreira.olx.activity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -24,7 +24,6 @@ import android.widget.Toast;
 import com.blackcat.currencyedittext.CurrencyEditText;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.marcosviniciusferreira.olx.R;
@@ -36,6 +35,8 @@ import com.santalu.maskedittext.MaskEditText;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import dmax.dialog.SpotsDialog;
 
 public class CadastrarAnuncioActivity extends AppCompatActivity
         implements View.OnClickListener {
@@ -50,6 +51,7 @@ public class CadastrarAnuncioActivity extends AppCompatActivity
     private Anuncio anuncio;
 
     private StorageReference storage;
+    private AlertDialog dialog;
 
     private String[] permissoes = new String[]{
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -87,8 +89,15 @@ public class CadastrarAnuncioActivity extends AppCompatActivity
 
     private void salvarAnuncio() {
 
-        //Salvar imagem no Storage
+        dialog = new SpotsDialog.Builder()
+                .setContext(this)
+                .setMessage("Salvando anuncio")
+                .setCancelable(false)
+                .build();
 
+        dialog.show();
+
+        //Salvar imagem no Storage
         for (int i = 0; i < listaFotosRecuperadas.size(); i++) {
             String urlImagem = listaFotosRecuperadas.get(i);
             int tamanhoLista = listaFotosRecuperadas.size();
@@ -122,7 +131,9 @@ public class CadastrarAnuncioActivity extends AppCompatActivity
                 if (totalFotos == listaUrlFotos.size()) {
                     anuncio.setFotos(listaUrlFotos);
                     anuncio.salvar();
-                    Toast.makeText(CadastrarAnuncioActivity.this, "Sucesso no upload!", Toast.LENGTH_SHORT).show();
+
+                    dialog.dismiss();
+                    finish();
                 }
 
 
@@ -142,7 +153,7 @@ public class CadastrarAnuncioActivity extends AppCompatActivity
         String estado = campoEstado.getSelectedItem().toString();
         String categoria = campoCategoria.getSelectedItem().toString();
         String titulo = campoTitulo.getText().toString();
-        String valor = String.valueOf(campoValor.getRawValue());
+        String valor = campoValor.getText().toString();
         String telefone = campoTelefone.getText().toString();
         String descricao = campoDescricao.getText().toString();
 
@@ -166,13 +177,15 @@ public class CadastrarAnuncioActivity extends AppCompatActivity
         }
 
         anuncio = configurarAnuncio();
+        String valor = String.valueOf(campoValor.getRawValue());
+
 
         if (listaFotosRecuperadas.size() != 0) {
 
             if (!anuncio.getEstado().isEmpty()) {
                 if (!anuncio.getCategoria().isEmpty()) {
                     if (!anuncio.getTitulo().isEmpty()) {
-                        if (!anuncio.getValor().isEmpty() && !anuncio.getValor().equals("0")) {
+                        if (!valor.isEmpty() && !anuncio.getValor().equals("0")) {
                             if (!anuncio.getTelefone().isEmpty() && numerosTelefone.length() >= 11) {
                                 if (!anuncio.getDescricao().isEmpty()) {
                                     salvarAnuncio();

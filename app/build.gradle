@@ -41,6 +41,12 @@ dependencies {
     //MaskEditText dependencies
     implementation 'com.github.santalu:mask-edittext:1.0.7'
 
+    //Spots Dialog dependencies
+    implementation 'com.github.d-max:spots-dialog:1.1@aar'
+
+    //Picasso dependencies
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 
 }
 
