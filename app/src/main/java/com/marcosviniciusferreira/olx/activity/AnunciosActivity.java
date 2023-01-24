@@ -124,13 +124,7 @@ public class AnunciosActivity extends AppCompatActivity {
     }
 
     public void limparFiltros(View view) {
-        Log.i("CHURROS", "listaAnuncios ===>>> " + listaAnuncios);
-        Log.i("CHURROS", "filtroEstado ===>>> " + filtroEstado);
-        Log.i("CHURROS", "filtroCategoria ===>>> " + filtroCategoria);
         recuperarAnunciosPublicos();
-        Log.i("CHURROS", "listaAnuncios ===>>> " + listaAnuncios);
-        Log.i("CHURROS", "filtroEstado ===>>> " + filtroEstado);
-        Log.i("CHURROS", "filtroCategoria ===>>> " + filtroCategoria);
     }
 
     public void inicializarComponentes() {
@@ -258,7 +252,6 @@ public class AnunciosActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
 
                 filtroCategoria = spinnerCategoria.getSelectedItem().toString();
-                buttonLimparFiltros.setVisibility(View.VISIBLE);
                 recuperarAnunciosPorCategoria();
 
             }
@@ -278,6 +271,8 @@ public class AnunciosActivity extends AppCompatActivity {
     }
 
     private void recuperarAnunciosPorCategoria() {
+
+        buttonLimparFiltros.setVisibility(View.VISIBLE);
 
         dialog = new SpotsDialog.Builder()
                 .setContext(this)
