@@ -38,6 +38,15 @@
             android:onClick="filtrarPorCategoria"
             android:text="Categoria"
             android:textColor="@color/colorPrimary" />
+
+        <Button
+            android:id="@+id/buttonLimparFiltros"
+            style="?attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="limparFiltros"
+            android:text="Limpar Filtros"
+            android:textColor="@color/colorPrimary" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

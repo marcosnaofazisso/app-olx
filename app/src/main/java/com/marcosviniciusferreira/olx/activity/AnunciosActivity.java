@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -34,7 +36,7 @@ import dmax.dialog.SpotsDialog;
 public class AnunciosActivity extends AppCompatActivity {
 
     private FirebaseAuth autenticacao;
-    private Button buttonRegiao, buttonCategoria;
+    private Button buttonRegiao, buttonCategoria, buttonLimparFiltros;
     private RecyclerView recyclerAnunciosPublicos;
     private AdapterAnuncios adapterAnuncios;
     private List<Anuncio> listaAnuncios = new ArrayList<>();
@@ -68,6 +70,8 @@ public class AnunciosActivity extends AppCompatActivity {
         recyclerAnunciosPublicos.setAdapter(adapterAnuncios);
 
         recuperarAnunciosPublicos();
+
+        buttonLimparFiltros.setVisibility(View.GONE);
 
 
     }
@@ -119,13 +123,22 @@ public class AnunciosActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void limparFiltros(View view) {
+        Log.i("CHURROS", "listaAnuncios ===>>> " + listaAnuncios);
+        Log.i("CHURROS", "filtroEstado ===>>> " + filtroEstado);
+        Log.i("CHURROS", "filtroCategoria ===>>> " + filtroCategoria);
+        recuperarAnunciosPublicos();
+        Log.i("CHURROS", "listaAnuncios ===>>> " + listaAnuncios);
+        Log.i("CHURROS", "filtroEstado ===>>> " + filtroEstado);
+        Log.i("CHURROS", "filtroCategoria ===>>> " + filtroCategoria);
+    }
+
     public void inicializarComponentes() {
 
         recyclerAnunciosPublicos = findViewById(R.id.recyclerAnunciosPublicos);
         buttonCategoria = findViewById(R.id.buttonCategoria);
-
-
         buttonRegiao = findViewById(R.id.buttonRegiao);
+        buttonLimparFiltros = findViewById(R.id.buttonLimparFiltros);
 
     }
 
@@ -162,6 +175,8 @@ public class AnunciosActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
+                dialog.dismiss();
+
             }
         });
 
@@ -171,6 +186,8 @@ public class AnunciosActivity extends AppCompatActivity {
     }
 
     private void recuperarAnunciosPorEstado() {
+
+        buttonLimparFiltros.setVisibility(View.VISIBLE);
 
         dialog = new SpotsDialog.Builder()
                 .setContext(this)
@@ -196,7 +213,6 @@ public class AnunciosActivity extends AppCompatActivity {
                         Anuncio anuncio = anuncios.getValue(Anuncio.class);
                         listaAnuncios.add(anuncio);
 
-
                     }
                 }
 
@@ -218,9 +234,110 @@ public class AnunciosActivity extends AppCompatActivity {
 
     public void filtrarPorCategoria(View view) {
 
+        AlertDialog.Builder dialogCategoria = new AlertDialog.Builder(this);
+        dialogCategoria.setTitle("Selecione a categoria desejada");
+
+        //Configurar spinner dentro do dialog
+        View viewSpinner = getLayoutInflater().inflate(R.layout.dialog_spinner, null);
+
+        final Spinner spinnerCategoria = viewSpinner.findViewById(R.id.spinnerFiltro);
+
+        //Configurar spinner de Estados
+        String[] categorias = getResources().getStringArray(R.array.categoria);
+        ArrayAdapter<String> adapterCategorias = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item,
+                categorias
+        );
+        adapterCategorias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategoria.setAdapter(adapterCategorias);
+
+        dialogCategoria.setView(viewSpinner);
+
+        dialogCategoria.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                filtroCategoria = spinnerCategoria.getSelectedItem().toString();
+                buttonLimparFiltros.setVisibility(View.VISIBLE);
+                recuperarAnunciosPorCategoria();
+
+            }
+        }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+
+            }
+        });
+
+        AlertDialog dialog = dialogCategoria.create();
+        dialog.show();
+
+
+    }
+
+    private void recuperarAnunciosPorCategoria() {
+
+        dialog = new SpotsDialog.Builder()
+                .setContext(this)
+                .setMessage("Carregando anúncios")
+                .setCancelable(false)
+                .build();
+
+        dialog.show();
+
+        anunciosPublicosRef = ConfiguracaoFirebase.getFirebase()
+                .child("anuncios");
+
+        anunciosPublicosRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                listaAnuncios.clear();
+
+                for (DataSnapshot estados : dataSnapshot.getChildren()) {
+                    for (DataSnapshot categoria : estados.getChildren()) {
+
+                        if (categoria.getKey().equals(filtroCategoria)) {
+
+                            for (DataSnapshot anuncios : categoria.getChildren()) {
+
+                                Anuncio anuncio = anuncios.getValue(Anuncio.class);
+                                listaAnuncios.add(anuncio);
+
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+
+                Collections.reverse(listaAnuncios);
+                adapterAnuncios.notifyDataSetChanged();
+
+                dialog.dismiss();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
     public void recuperarAnunciosPublicos() {
+
+        anunciosPublicosRef = ConfiguracaoFirebase.getFirebase()
+                .child("anuncios");
+
+        buttonLimparFiltros.setVisibility(View.GONE);
 
         dialog = new SpotsDialog.Builder()
                 .setContext(this)
@@ -231,6 +348,7 @@ public class AnunciosActivity extends AppCompatActivity {
         dialog.show();
 
         listaAnuncios.clear();
+
         anunciosPublicosRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
