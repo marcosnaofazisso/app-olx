@@ -50,10 +50,6 @@ public class AnunciosActivity extends AppCompatActivity {
     private String filtroCategoria = "";
 
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,24 +58,10 @@ public class AnunciosActivity extends AppCompatActivity {
         inicializarComponentes();
 
 
-
-
-
-
         //Configuracoes iniciais
         autenticacao = ConfiguracaoFirebase.getFirebaseAuth();
         anunciosPublicosRef = ConfiguracaoFirebase.getFirebase()
                 .child("anuncios");
-
-
-
-
-
-
-
-
-
-
 
 
         //Configurar adapter
@@ -93,11 +75,6 @@ public class AnunciosActivity extends AppCompatActivity {
         recuperarAnunciosPublicos();
 
         buttonLimparFiltros.setVisibility(View.GONE);
-
-
-
-
-
 
 
         //Aplicar evento de clique
@@ -128,18 +105,6 @@ public class AnunciosActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     //Método que cria as opções do menu (ocorre apenas 1 vez)
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -164,16 +129,6 @@ public class AnunciosActivity extends AppCompatActivity {
 
         return super.onPrepareOptionsMenu(menu);
     }
-
-
-
-
-
-
-
-
-
-
 
 
     @Override
@@ -203,18 +158,6 @@ public class AnunciosActivity extends AppCompatActivity {
     }
 
     public void inicializarComponentes() {
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         recyclerAnunciosPublicos = findViewById(R.id.recyclerAnunciosPublicos);
@@ -267,30 +210,6 @@ public class AnunciosActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
     private void recuperarAnunciosPorEstado() {
 
