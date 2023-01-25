@@ -138,7 +138,7 @@ public class AnunciosActivity extends AppCompatActivity {
 
 
 
-    
+
 
     //Método que cria as opções do menu (ocorre apenas 1 vez)
     @Override
@@ -164,6 +164,17 @@ public class AnunciosActivity extends AppCompatActivity {
 
         return super.onPrepareOptionsMenu(menu);
     }
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -192,6 +203,19 @@ public class AnunciosActivity extends AppCompatActivity {
     }
 
     public void inicializarComponentes() {
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         recyclerAnunciosPublicos = findViewById(R.id.recyclerAnunciosPublicos);
         buttonCategoria = findViewById(R.id.buttonCategoria);
@@ -242,6 +266,31 @@ public class AnunciosActivity extends AppCompatActivity {
         dialog.show();
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
     private void recuperarAnunciosPorEstado() {
 
