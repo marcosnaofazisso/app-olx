@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -25,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.marcosviniciusferreira.olx.R;
 import com.marcosviniciusferreira.olx.adapter.AdapterAnuncios;
 import com.marcosviniciusferreira.olx.helper.ConfiguracaoFirebase;
+import com.marcosviniciusferreira.olx.helper.RecyclerItemClickListener;
 import com.marcosviniciusferreira.olx.model.Anuncio;
 
 import java.util.ArrayList;
@@ -72,6 +74,30 @@ public class AnunciosActivity extends AppCompatActivity {
         recuperarAnunciosPublicos();
 
         buttonLimparFiltros.setVisibility(View.GONE);
+
+        //Aplicar evento de clique
+        recyclerAnunciosPublicos.addOnItemTouchListener(new RecyclerItemClickListener(
+                this, recyclerAnunciosPublicos,
+                new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Anuncio anuncioSelecionado = listaAnuncios.get(position);
+                        Intent i = new Intent(AnunciosActivity.this, DetalhesProdutoActivity.class);
+                        i.putExtra("anuncioSelecionado", anuncioSelecionado);
+                        startActivity(i);
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+
+                    }
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    }
+                }
+        ));
 
 
     }
