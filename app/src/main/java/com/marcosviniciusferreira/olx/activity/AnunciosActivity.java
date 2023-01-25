@@ -57,6 +57,7 @@ public class AnunciosActivity extends AppCompatActivity {
 
         inicializarComponentes();
 
+
         //Configuracoes iniciais
         autenticacao = ConfiguracaoFirebase.getFirebaseAuth();
         anunciosPublicosRef = ConfiguracaoFirebase.getFirebase()
@@ -74,6 +75,7 @@ public class AnunciosActivity extends AppCompatActivity {
         recuperarAnunciosPublicos();
 
         buttonLimparFiltros.setVisibility(View.GONE);
+
 
         //Aplicar evento de clique
         recyclerAnunciosPublicos.addOnItemTouchListener(new RecyclerItemClickListener(
@@ -102,6 +104,7 @@ public class AnunciosActivity extends AppCompatActivity {
 
     }
 
+
     //Método que cria as opções do menu (ocorre apenas 1 vez)
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -126,6 +129,7 @@ public class AnunciosActivity extends AppCompatActivity {
 
         return super.onPrepareOptionsMenu(menu);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -154,6 +158,7 @@ public class AnunciosActivity extends AppCompatActivity {
     }
 
     public void inicializarComponentes() {
+
 
         recyclerAnunciosPublicos = findViewById(R.id.recyclerAnunciosPublicos);
         buttonCategoria = findViewById(R.id.buttonCategoria);
@@ -204,6 +209,7 @@ public class AnunciosActivity extends AppCompatActivity {
         dialog.show();
 
     }
+
 
     private void recuperarAnunciosPorEstado() {
 
