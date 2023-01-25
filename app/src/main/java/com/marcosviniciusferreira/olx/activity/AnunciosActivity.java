@@ -75,6 +75,12 @@ public class AnunciosActivity extends AppCompatActivity {
 
         buttonLimparFiltros.setVisibility(View.GONE);
 
+
+
+
+
+        
+
         //Aplicar evento de clique
         recyclerAnunciosPublicos.addOnItemTouchListener(new RecyclerItemClickListener(
                 this, recyclerAnunciosPublicos,
