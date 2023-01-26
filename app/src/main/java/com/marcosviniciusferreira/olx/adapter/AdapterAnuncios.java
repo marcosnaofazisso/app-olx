@@ -44,6 +44,7 @@ public class AdapterAnuncios extends RecyclerView.Adapter<AdapterAnuncios.MyView
         myViewHolder.titulo.setText(anuncio.getTitulo());
         myViewHolder.valor.setText(anuncio.getValor());
         myViewHolder.descricao.setText(anuncio.getDescricao());
+        myViewHolder.uf.setText(anuncio.getEstado());
 
         //Carregar a imagem utilizando a lib Picasso
         List<String> urlFotos = anuncio.getFotos();
@@ -65,6 +66,7 @@ public class AdapterAnuncios extends RecyclerView.Adapter<AdapterAnuncios.MyView
         TextView titulo;
         TextView valor;
         TextView descricao;
+        TextView uf;
         ImageView foto;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -74,6 +76,7 @@ public class AdapterAnuncios extends RecyclerView.Adapter<AdapterAnuncios.MyView
             valor = itemView.findViewById(R.id.textPreco);
             descricao = itemView.findViewById(R.id.textDescricao);
             foto = itemView.findViewById(R.id.imageAnuncio);
+            uf = itemView.findViewById(R.id.textUf);
         }
     }
 }

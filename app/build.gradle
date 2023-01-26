@@ -47,6 +47,9 @@ dependencies {
     //Picasso dependencies
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    //CarouselView dependencies
+    implementation 'com.synnapps:carouselview:0.1.5'
+
 
 }
 
