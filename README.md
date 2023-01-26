@@ -1,6 +1,6 @@
 # OLX Clone
 
-<img src="./demo/olx-clone.jpg" height="620" width="1000">
+<img src="./demo/olx-clone.jpg" height="500" width="800">
 
 A basic OLX Clone project, integrated with Firebase Authentication, Realtime Database and Storage for registering ads data and images. 
 
