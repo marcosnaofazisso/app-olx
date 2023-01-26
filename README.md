@@ -1,34 +1,60 @@
-# Project Name
+# OLX Clone
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text eve
+<img src="./demo/olx-clone.jpg" height="800" width="1500">
+
+A basic OLX Clone project, integrated with Firebase Authentication, Realtime Database and Storage for registering ads data and images. 
 
 ### Developers: 
 * [Marcos Vinicius Ferreira](https://github.com/marcosnaofazisso) 
 
 ## Goals and Rules:
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+The main goals of OLX Clone project on Android development was to study how to replicate the functionality of listing ads from Firebase Database. This include the ability to register a new ad, save it in "My Ads" acitivty and fetch new ads registered by any user.
 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The images were saved in Firebase Storage and the carousel was made by using CarouselView library along with Picasso library.
+
+Additionally, the project aim to replicate the user interface of OLX, as well as its user experience, in order to make the app feel familiar to users. 
 
 # Demo
-<img src="./demo/boromir.jpg" height="200" width="400">
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Images of some of the functionalities like listing all ads, ads registered by user and creating a new ad, with photos downloaded from gallery.
 
 # Tutorial
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Recommended build tools and SDK versions:
 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Android Studio IDE: 3.5
+Android 8.0 / 9.0
+Compile 26
+Min SDK 15
+Max Android SDK Build-Tools 28 (API 9)
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+    implementation 'com.android.support:design:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    //Firebase dependencies
+    implementation 'com.google.firebase:firebase-database:11.6.2'
+    implementation 'com.google.firebase:firebase-auth:11.6.2'
+    implementation 'com.google.firebase:firebase-core:11.6.2'
+    implementation 'com.google.firebase:firebase-storage:11.6.2'
 
-    code 
-    code  
-    code
+    //CurrencyEditText dependencies
+    implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
+
+    //MaskEditText dependencies
+    implementation 'com.github.santalu:mask-edittext:1.0.7'
+
+    //Spots Dialog dependencies
+    implementation 'com.github.d-max:spots-dialog:1.1@aar'
+
+    //Picasso dependencies
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //CarouselView dependencies
+    implementation 'com.synnapps:carouselview:0.1.5'
 
 
 ## Thank you!
