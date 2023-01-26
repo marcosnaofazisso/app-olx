@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
     android:orientation="vertical"
-    android:padding="8dp"
     tools:context=".activity.DetalhesProdutoActivity">
 
     <com.synnapps.carouselview.CarouselView
@@ -22,54 +20,64 @@
 
     </com.synnapps.carouselview.CarouselView>
 
-    <TextView
-        android:id="@+id/textTituloDetalhe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Titulo"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/textPrecoDetalhe"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="8dp"
-        android:text="R$ 250"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+        <TextView
+            android:id="@+id/textTituloDetalhe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Titulo"
+            android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/textEstadoDetalhe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_location"
-        android:padding="8dp"
-        android:text="UF" />
+        <TextView
+            android:id="@+id/textPrecoDetalhe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:text="R$ 250"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="8dp"
-        android:background="@android:color/darker_gray" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/darker_gray" />
 
-    <TextView
-        android:id="@+id/textDescricaoDetalhe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingBottom="10dp"
-        android:text="Descrição" />
+        <TextView
+            android:id="@+id/textEstadoDetalhe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_location"
+            android:padding="8dp"
+            android:text="UF"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/buttonVerTelefone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ver telefone"
-        android:theme="@style/botaoPadrao" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/textDescricaoDetalhe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="10dp"
+            android:text="Descrição" />
+
+        <Button
+            android:id="@+id/buttonVerTelefone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="visualizarTelefone"
+            android:text="Ver telefone"
+            android:theme="@style/botaoPadrao" />
+    </LinearLayout>
 
 </LinearLayout>

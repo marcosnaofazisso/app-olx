@@ -1,7 +1,10 @@
 package com.marcosviniciusferreira.olx.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +27,7 @@ public class DetalhesProdutoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalhes_produto);
 
         //Configurar toolbar
+        getSupportActionBar().setTitle("Detalhe Produto");
 
         inicializarComponentes();
 
@@ -53,6 +57,14 @@ public class DetalhesProdutoActivity extends AppCompatActivity {
 
     }
 
+    public void visualizarTelefone(View view) {
+        Intent i = new Intent(
+                Intent.ACTION_DIAL, Uri.fromParts
+                ("tel", anuncioSelecionado.getTelefone(), null));
+        startActivity(i);
+
+    }
+
     private void inicializarComponentes() {
         carouselView = findViewById(R.id.carouselView);
         titulo = findViewById(R.id.textTituloDetalhe);
@@ -60,4 +72,5 @@ public class DetalhesProdutoActivity extends AppCompatActivity {
         estado = findViewById(R.id.textEstadoDetalhe);
         preco = findViewById(R.id.textPrecoDetalhe);
     }
+
 }
