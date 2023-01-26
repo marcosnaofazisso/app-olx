@@ -1,6 +1,6 @@
 # OLX Clone
 
-<img src="./demo/olx-clone.jpg" height="800" width="1500">
+<img src="./demo/olx-clone.jpg" height="620" width="1000">
 
 A basic OLX Clone project, integrated with Firebase Authentication, Realtime Database and Storage for registering ads data and images. 
 
@@ -15,6 +15,9 @@ The images were saved in Firebase Storage and the carousel was made by using Car
 Additionally, the project aim to replicate the user interface of OLX, as well as its user experience, in order to make the app feel familiar to users. 
 
 # Demo
+
+https://user-images.githubusercontent.com/79977399/214863407-b3c906fd-5b0e-4533-9cd8-43f8f1839b24.mp4
+
 
 Images of some of the functionalities like listing all ads, ads registered by user and creating a new ad, with photos downloaded from gallery.
 
